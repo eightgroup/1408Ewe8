@@ -9,10 +9,10 @@ class LoginController extends \yii\web\Controller
     {
         $session = \Yii::$app->session;
         $session->open();
-        $name = $session->get('name');
-        $pwd = $session->get('pwd');
+        $name = $session->get('name')?$session->get('name'):'';
+        $pwd = $session->get('pwd')?$session->get('pwd'):'';
         if($name && $pwd){
-
+			return $this->renderPartial('login',['name'=>$name,'pwd'=>$pwd]);
         }else{
             return $this->renderPartial('login');
         }

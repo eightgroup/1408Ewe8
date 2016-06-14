@@ -70,17 +70,25 @@
 
 											<div class="space-6"></div>
 
-                                            <form action="index.php?r=login/login" method="post">
+                                            <form action="index.php?r=login/proving" method="post">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" id="username"  class="form-control" placeholder="Username" onblur="fun_username(this)" />
-														</span>
+                                                            <?php if(!empty($pwd)){?>
+                                                                <input type="text" id="username" value="<?php echo $name?>" class="form-control" placeholder="Username" onblur="fun_username(this)" />
+                                                            <?php }else{?>
+                                                                <input type="text" id="username"  class="form-control" placeholder="Username" onblur="fun_username(this)" />
+														    <?php }?>
+                                                        </span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" id="pwd"  class="form-control" placeholder="Password" onblur="fun_pwd(this)" />
+                                                            <?php if(!empty($pwd)){?>
+															<input type="password" id="pwd" value="<?php echo $pwd?>" class="form-control" placeholder="Password" onblur="fun_pwd(this)" />
+                                                            <?php }else{?>
+                                                            <input type="password" id="pwd"  class="form-control" placeholder="Password" onblur="fun_pwd(this)" />
+                                                            <?php }?>
 														</span>
 													</label>
 
@@ -88,7 +96,11 @@
 
 													<div class="clearfix">
 														<label class="inline">
-															<input type="checkbox" class="ace" name="remember" value="1"/>
+                                                            <?php if(!empty($pwd)){?>
+															<input type="checkbox" class="ace" id="remember" value="1" checked/>
+                                                            <?php }else{?>
+                                                            <input type="checkbox" class="ace" id="remember" value="1"/>
+                                                            <?php }?>
 															<span class="lbl"> 记住密码</span>
 														</label>
 
@@ -195,34 +207,34 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="Email" />
+															<input type="email" class="form-control" name="u_email" placeholder="Email" />
 															<i class="icon-envelope"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input type="text" class="form-control" name="u_name" placeholder="Username" onblur="fun_name(this)"/>
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input type="password" class="form-control" name="u_pwd" placeholder="Password" />
 															<i class="icon-lock"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Repeat password" />
+															<input type="password" class="form-control" name="u_pwd1" placeholder="Repeat password" />
 															<i class="icon-retweet"></i>
 														</span>
 													</label>
 
 													<label class="block">
-														<input type="checkbox" class="ace" />
+														<input type="checkbox" class="ace" checked/>
 														<span class="lbl">
 															我同意
 															<a href="#">用户协议</a>
