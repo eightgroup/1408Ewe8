@@ -19,11 +19,13 @@ class LoginController extends \yii\web\Controller
     }
     //展示登录页面
     public function actionLogin(){
+        //开启session
         $session = \Yii::$app->session;
         $session->open();
         if($session->get('id')==''){
             echo "<script>alert('请先登录');location.href='index.php?r=login/index'</script>";
         }else{
+            //视图
             return $this->renderPartial('index');
         }
     }

@@ -94,4 +94,30 @@ class PublicController extends CoController
         }
         return $this->renderPartial("addselect",array('list'=>$post));
     }
+
+    function  actionSel(){
+        $id=$_POST['id'];
+         if($id==''){
+            return false;
+        }
+        $connection = \Yii::$app->db;
+        $command = $connection->createCommand("SELECT * FROM we_public WHERE p_id=$id");
+        $post = $command->queryOne();
+        if(!$post){
+            return false;
+        }
+        echo json_encode($post);
+    }
+
+    function actionDel(){
+        $id=$_POST['id'];
+        $connection=\Yii::$app->db;
+        $sql="delete from we_public where p_id=$id";
+        $command=$connection->createCommand($sql)->execute();
+        if($command){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
 }
