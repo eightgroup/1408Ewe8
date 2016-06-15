@@ -112,10 +112,6 @@ class PublicController extends CoController
         echo json_encode($post);
     }
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 491bb980629d30d35b99603612c26ca33a42968c
 	//删除公众号
 	public function actionDel(){
 		$request=Yii::$app->request;
@@ -127,8 +123,4 @@ class PublicController extends CoController
 			return false;
 		}
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 491bb980629d30d35b99603612c26ca33a42968c
 }
