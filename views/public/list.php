@@ -173,7 +173,7 @@
 	                                                                        </button>
 	                                                                        	<!-- 删除 -->
 									
-	                                                                        <button class="btn btn-xs btn-danger" name='del' value="<?php echo $val['p_id']?>">
+	                                                                        <button class="btn btn-xs btn-danger" onclick="del(<?php echo $val['p_id']?>)" id="<?php echo $val['p_id']?>">
 	                                                                            <i class="icon-trash bigger-120" ids="del"></i>
 	                                                                        </button>
 
@@ -224,18 +224,6 @@
 													</tbody>
 												</table>
 												<!-- 表格结束-->
-
-
-
-
-<<<<<<< HEAD
-=======
-                                                                        <button class="btn btn-xs btn-danger" 
-																		id="<?php echo $val['p_id']?>" onclick='del(<?php echo $val['p_id']?>)'>
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </button>
->>>>>>> 20c57fa069dc6a7cf2b180bf42ee2a7be1126ae6
-
 
 										</div><!-- /.table-responsive -->
 									</div><!-- /span -->
@@ -382,7 +370,6 @@
 				}
 			})
 		</script>
-<<<<<<< HEAD
 		<script>
 				$(function(){
 					$("button[name=sel]").click(function(){
@@ -425,7 +412,7 @@
 								str+="<td>"+msg.p_token+"</td>";
 							str+="</tr>";
 									
-				str+="</table>";
+							str+="</table>";
 										// alert(str)
 									$('#table2').remove();
 									$('table').after(str)
@@ -442,8 +429,7 @@
 
 
 				})
-=======
-		<script type="text/javascript">
+
 			function del(id){
 				var obj=document.getElementById(id);
 				//alert(obj);exit;
@@ -455,7 +441,6 @@
 					  }
 				});
 			}
->>>>>>> 20c57fa069dc6a7cf2b180bf42ee2a7be1126ae6
 		</script>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>

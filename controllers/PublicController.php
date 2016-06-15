@@ -85,7 +85,7 @@ class PublicController extends CoController
 
 
     public function actionAddselect(){
-        $id =$_GET['id'];
+        $id =\Yii::$app->request->get('id');
         if($id==''){
             return false;
         }
@@ -98,9 +98,8 @@ class PublicController extends CoController
         return $this->renderPartial("addselect",array('list'=>$post));
     }
 
-<<<<<<< HEAD
     function  actionSel(){
-        $id=$_POST['id'];
+        $id=\Yii::$app->request->post('id');
          if($id==''){
             return false;
         }
@@ -113,28 +112,16 @@ class PublicController extends CoController
         echo json_encode($post);
     }
 
-    function actionDel(){
-        $id=$_POST['id'];
-        $connection=\Yii::$app->db;
-        $sql="delete from we_public where p_id=$id";
-        $command=$connection->createCommand($sql)->execute();
-        if($command){
-            echo 1;
-        }else{
-            echo 0;
-        }
-    }
-=======
 	//删除公众号
 	public function actionDel(){
 		$request=Yii::$app->request;
 		$id=$request->get('id');
 		$re=Yii::$app->db->createCommand()->delete('we_public',"p_id=:id",[':id'=> $id])->execute();
 		if($re){
-			echo true;
+			return true;
 		}else{
-			echo false;
+			return false;
 		}
 	}
->>>>>>> 20c57fa069dc6a7cf2b180bf42ee2a7be1126ae6
+
 }
