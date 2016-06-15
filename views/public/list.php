@@ -432,36 +432,6 @@
 						// tbody.appendTo(str);
 					})
 
-					$("button[name=del]").click(function(){
-						ojb=$(this);
-					
-						id=$(this).val()
-						if(confirm("你确定要删除吗?")){
-								$.ajax({
-							type:'post',
-							url:"http://www.yii.com/1408Ewe8/web/index.php?r=public/del",
-							data:{
-								id:id
-							},
-							// dataType:'json',
-							success:function(msg){								
-									  if(msg){
-									  	alert("删除成功!")
-									  ojb.parents('tr').remove();
-									  }else{
-								
-							}
-									
-									
-							}
-							
-						})
-						}else{
-
-						}
-						
-					
-					})
 
 				})
 		</script>
