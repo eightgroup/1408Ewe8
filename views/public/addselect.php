@@ -120,7 +120,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公众号名称 </label>
 
 										<div class="col-sm-9">
-											<input name="publicName" type="text"  required="required" id="form-field-1" placeholder="给你的公众号起个名字" class="col-xs-10 col-sm-5" />
+											<input readonly="true" value="<?php echo $list['p_name']?>"  name="publicName" type="text"  required="required" id="form-field-1" placeholder="给你的公众号起个名字" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
                                     <div class="form-group">
@@ -134,14 +134,28 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公众号AppId </label>
 
                                         <div class="col-sm-9">
-                                            <input type="text" name="publicId" required="required" id="form-field-3" placeholder="您的公众号AppId" class="col-xs-10 col-sm-5" />
+                                            <input type="text" value="<?php echo $list['p_AppID']?>" readonly="true"  name="publicId" required="required" id="form-field-3" placeholder="您的公众号AppId" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公众号AppSecret </label>
 
                                         <div class="col-sm-9">
-                                            <input type="text" name="publicSelect" required="required" id="form-field-4" placeholder="您的公众号AppSecret" class="col-xs-10 col-sm-5" />
+                                            <input type="text" value="<?php echo $list['p_AppSecret']?>" readonly="true"  name="publicSelect" required="required" id="form-field-4" placeholder="您的公众号AppSecret" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="red">公众号ToKey</font> </label>
+
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $list['p_token']?>" readonly="true"  name="publicSelect" required="required" id="form-field-4" placeholder="您的公众号AppSecret" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <font color="red">您的微信url</font> </label>
+
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $list['p_url']?>" readonly="true"  name="publicSelect" required="required" id="form-field-4" placeholder="您的公众号AppSecret" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
 								<!--	这是是自带的表单<div class="space-4"></div>
@@ -241,13 +255,13 @@
 										<div class="col-md-offset-3 col-md-9">
 											<button class="btn btn-info" type="submit">
 												<i class="icon-ok bigger-110"></i>
-												Submit
+												继续添加公众号
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
 											<button class="btn" type="reset">
 												<i class="icon-undo bigger-110"></i>
-												Reset
+												返回公众号列表
 											</button>
 										</div>
 									</div>

@@ -34,7 +34,7 @@ class PublicController extends CoController
         //生成url参数值
         $urlget=$this->actionUget();
         //生成微信通信页面
-        $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?'))."?r=weixin/url&st=".$urlget;
+        $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?'))."?r=wei/url&st=".$urlget;
         $connection->createCommand()->update('we_public', ['p_state' => 0], 'p_state = 1')->execute();
         $state=$connection->createCommand()->insert('we_public', [
             'p_name' => $publicName,
@@ -60,8 +60,15 @@ class PublicController extends CoController
         }
         return $randpwd;
     }
+    //
     public function actionList(){
-        return $this->renderPartial('list');
+        $session = \Yii::$app->session;
+        $session->open();
+        $id=$session->get('id');
+        $connection = \Yii::$app->db;
+        $command = $connection->createCommand("select * from we_public where u_id=$id");
+        $post = $command->queryAll();
+        return $this->renderPartial('list',array('list'=>$post));
     }
     //生成URl随机给值
     public function actionUget($len=50, $chars=null){
@@ -85,6 +92,6 @@ class PublicController extends CoController
         if(!$post){
             return false;
         }
-        return $this->renderPartial("addselect");
+        return $this->renderPartial("addselect",array('list'=>$post));
     }
 }

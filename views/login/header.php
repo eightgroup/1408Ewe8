@@ -236,30 +236,7 @@
 							</a>
 
 							<ul id="hehe" class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
-									<a href="#" >
-										<i class="icon-cog"></i>
-										他的公众号
-									</a>
-								</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-cog"></i>
-                                        我的公众号
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-cog"></i>
-                                        你的公众号
-                                    </a>
-                                </li>
-                                <li style="display: none">
-                                    <a href="#">
-                                        <i class="icon-cog"></i>
-                                        设置
-                                    </a>
-                                </li>
+
 							</ul>
 
 						</li>
