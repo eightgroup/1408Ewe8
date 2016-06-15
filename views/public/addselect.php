@@ -259,7 +259,7 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<button class="btn" type="reset">
+											<button onclick="add()" class="btn" type="reset">
 												<i class="icon-undo bigger-110"></i>
 												返回公众号列表
 											</button>
@@ -663,3 +663,8 @@
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>
+<script>
+    function add(){
+        location.href='index.php?r=public/list'
+    }
+</script>

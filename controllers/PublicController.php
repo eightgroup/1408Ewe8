@@ -35,7 +35,7 @@ class PublicController extends CoController
         $urlget=$this->actionUget();
         //生成微信通信页面
         $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?'))."?r=wei/url&st=".$urlget;
-        $connection->createCommand()->update('we_public', ['p_state' => 0], 'p_state = 1')->execute();
+        $connection->createCommand()->update('we_public', ['p_state' => 0], "p_state = 1 and u_id=$id")->execute();
         $state=$connection->createCommand()->insert('we_public', [
             'p_name' => $publicName,
             'p_type'=>'微信公众号',
