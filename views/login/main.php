@@ -42,16 +42,9 @@
 						<li class="active">
 							<a href="index.php?r=login/login">
 								<i class="icon-dashboard"></i>
-								<span class="menu-text"> 控制台 </span>
+								<span class="menu-text"> 当前公众号 </span>
 							</a>
 						</li>
-
-						<!-- <li>
-							<a href="typography.html">
-								<i class="icon-text-width"></i>
-								<span class="menu-text"> 添加公众号 </span>
-							</a>
-						</li> -->
 
 						<li>
 							<a href="#" class="dropdown-toggle">

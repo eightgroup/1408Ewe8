@@ -166,7 +166,8 @@
                                                                             <i class="icon-edit bigger-120"></i>
                                                                         </button>
 
-                                                                        <button class="btn btn-xs btn-danger">
+                                                                        <button class="btn btn-xs btn-danger" 
+																		id="<?php echo $val['p_id']?>" onclick='del(<?php echo $val['p_id']?>)'>
                                                                             <i class="icon-trash bigger-120"></i>
                                                                         </button>
 
@@ -358,6 +359,19 @@
 					return 'left';
 				}
 			})
+		</script>
+		<script type="text/javascript">
+			function del(id){
+				var obj=document.getElementById(id);
+				//alert(obj);exit;
+				$.get("index.php?r=public/del&id="+id, function(data){
+					  if(data){
+						  obj.parentNode.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode.parentNode);
+					  }else{
+						  alert('出错啦!');
+					  }
+				});
+			}
 		</script>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>

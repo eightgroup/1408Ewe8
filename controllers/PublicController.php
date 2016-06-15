@@ -1,5 +1,6 @@
 <?php
 namespace app\controllers;
+use Yii;
 class PublicController extends CoController
 {
     public $enableCsrfValidation = false;
@@ -60,7 +61,7 @@ class PublicController extends CoController
         }
         return $randpwd;
     }
-    //
+    //公众号列表
     public function actionList(){
         $session = \Yii::$app->session;
         $session->open();
@@ -81,6 +82,8 @@ class PublicController extends CoController
         }
         return $str;
     }
+
+
     public function actionAddselect(){
         $id =$_GET['id'];
         if($id==''){
@@ -94,4 +97,16 @@ class PublicController extends CoController
         }
         return $this->renderPartial("addselect",array('list'=>$post));
     }
+
+	//删除公众号
+	public function actionDel(){
+		$request=Yii::$app->request;
+		$id=$request->get('id');
+		$re=Yii::$app->db->createCommand()->delete('we_public',"p_id=:id",[':id'=> $id])->execute();
+		if($re){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
 }
