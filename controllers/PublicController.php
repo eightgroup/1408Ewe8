@@ -1,5 +1,6 @@
 <?php
 namespace app\controllers;
+use Yii;
 class PublicController extends CoController
 {
     public $enableCsrfValidation = false;
@@ -35,7 +36,7 @@ class PublicController extends CoController
         $urlget=$this->actionUget();
         //生成微信通信页面
         $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?'))."?r=wei/url&st=".$urlget;
-        $connection->createCommand()->update('we_public', ['p_state' => 0], 'p_state = 1')->execute();
+        $connection->createCommand()->update('we_public', ['p_state' => 0], "p_state = 1 and u_id=$id")->execute();
         $state=$connection->createCommand()->insert('we_public', [
             'p_name' => $publicName,
             'p_type'=>'微信公众号',
@@ -60,7 +61,7 @@ class PublicController extends CoController
         }
         return $randpwd;
     }
-    //
+    //公众号列表
     public function actionList(){
         $session = \Yii::$app->session;
         $session->open();
@@ -81,6 +82,8 @@ class PublicController extends CoController
         }
         return $str;
     }
+
+
     public function actionAddselect(){
         $id =$_GET['id'];
         if($id==''){
@@ -95,6 +98,7 @@ class PublicController extends CoController
         return $this->renderPartial("addselect",array('list'=>$post));
     }
 
+<<<<<<< HEAD
     function  actionSel(){
         $id=$_POST['id'];
          if($id==''){
@@ -120,4 +124,17 @@ class PublicController extends CoController
             echo 0;
         }
     }
+=======
+	//删除公众号
+	public function actionDel(){
+		$request=Yii::$app->request;
+		$id=$request->get('id');
+		$re=Yii::$app->db->createCommand()->delete('we_public',"p_id=:id",[':id'=> $id])->execute();
+		if($re){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
+>>>>>>> 20c57fa069dc6a7cf2b180bf42ee2a7be1126ae6
 }

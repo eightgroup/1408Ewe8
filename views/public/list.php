@@ -228,6 +228,13 @@
 
 
 
+<<<<<<< HEAD
+=======
+                                                                        <button class="btn btn-xs btn-danger" 
+																		id="<?php echo $val['p_id']?>" onclick='del(<?php echo $val['p_id']?>)'>
+                                                                            <i class="icon-trash bigger-120"></i>
+                                                                        </button>
+>>>>>>> 20c57fa069dc6a7cf2b180bf42ee2a7be1126ae6
 
 
 										</div><!-- /.table-responsive -->
@@ -375,6 +382,7 @@
 				}
 			})
 		</script>
+<<<<<<< HEAD
 		<script>
 				$(function(){
 					$("button[name=sel]").click(function(){
@@ -434,6 +442,20 @@
 
 
 				})
+=======
+		<script type="text/javascript">
+			function del(id){
+				var obj=document.getElementById(id);
+				//alert(obj);exit;
+				$.get("index.php?r=public/del&id="+id, function(data){
+					  if(data){
+						  obj.parentNode.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode.parentNode);
+					  }else{
+						  alert('出错啦!');
+					  }
+				});
+			}
+>>>>>>> 20c57fa069dc6a7cf2b180bf42ee2a7be1126ae6
 		</script>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>

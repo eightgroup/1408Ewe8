@@ -14,26 +14,43 @@ class JsController extends \yii\web\Controller{
         $session->open();
         $id=$session->get('id');;
         $connection = \Yii::$app->db;
-        $command = $connection->createCommand("SELECT * FROM we_public WHERE u_id=$id");
+        $command = $connection->createCommand("SELECT * FROM we_public WHERE u_id=$id and p_state!=1");
         $lists = $command->queryAll();
         $str='';
         if($lists){
             foreach($lists as $key=>$val){
-                $str.="<li><a href='#'><i class='icon-cog'></i>".$val['p_name']."</a></li>";
+                $str.="<li ><a href='#' onclick='witch(".$val['p_id'].")'><i class='icon-cog'></i>".$val['p_name']."</a></li>";
             }
             $str.="<li style='display: none'><a href='#' ><i class='icon-cog'></i></a></li>";
-        }else{
-               $str.="<li><a href='#' ><i class='icon-cog'></i>请您添加一个公众号</a></li>";
         }
         echo $str;
     }
-    public function current(){
+    public function actionCurrent(){
         $session = \Yii::$app->session;
         $session->open();
         $id=$session->get('id');
         $connection = \Yii::$app->db;
-        $command = $connection->createCommand("SELECT * FROM we_public WHERE u_id=$id and p_state=1");
+        $command = $connection->createCommand("SELECT p_name FROM we_public WHERE u_id=$id and p_state=1");
         $lists = $command->queryOne();
-        print_r($lists);
+        if(!$lists){
+            $str='<small>您暂时没有操作的</small>
+            公众号';
+        }else{
+            $str='<small>您当前操作的是,</small>
+                 '.$lists['p_name'];
+        }
+        echo $str;
+    }
+    public function actionWitch(){
+        $id = \Yii::$app->request->post('id');
+        $session = \Yii::$app->session;
+        $session->open();
+        $sessionId=$session->get('id');
+        $connection = \Yii::$app->db;
+        $connection->createCommand()->update('we_public', ['p_state' => 0], "p_state = 1 and u_id=$sessionId")->execute();
+        $connection->createCommand()->update('we_public', ['p_state' => 1], "p_id=$id")->execute();
+        $command = $connection->createCommand("select p_name from we_public where p_id=$id");
+        $post = $command->queryOne();
+        echo $post['p_name'];
     }
 }

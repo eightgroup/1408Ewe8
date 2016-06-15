@@ -73,13 +73,13 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="#">控制台</a>
 							</li>
 
 							<li>
-								<a href="#">Tables</a>
+								<a href="#">消息管理</a>
 							</li>
-							<li class="active">Simple &amp; Dynamic</li>
+							<li class="active">规则列表</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -95,10 +95,10 @@
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								Tables
+								消息管理
 								<small>
 									<i class="icon-double-angle-right"></i>
-									Static &amp; Dynamic Tables
+									规则列表
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
