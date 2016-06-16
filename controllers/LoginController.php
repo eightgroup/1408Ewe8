@@ -12,6 +12,7 @@ class LoginController extends \yii\web\Controller
         $session->open();
         $name = $session->get('name')?$session->get('name'):'';
         $pwd = $session->get('pwd')?$session->get('pwd'):'';
+		//echo $name.$pwd;die;
         if($name && $pwd){
 			return $this->renderPartial('login',['name'=>$name,'pwd'=>$pwd]);
         }else{
@@ -36,6 +37,8 @@ class LoginController extends \yii\web\Controller
     public function actionForget(){
         echo "忘记密码";die;
     }
+
+	//注册
     public function actionRegister(){
         $request=Yii::$app->request;
         $u_name=$request->post('u_name');
@@ -52,8 +55,8 @@ class LoginController extends \yii\web\Controller
     public function actionProving(){
         $username = \Yii::$app->request->post('username');
         $pwd = \Yii::$app->request->post('pwd');
-        $remember = \Yii::$app->request->post('remember')?\Yii::$app->request->post('remember'):'';
-        //var_dump($remember);die;
+        $remember = \Yii::$app->request->post('remember');
+		//echo $remember;die;
         $connection = \Yii::$app->db;
         $command = $connection->createCommand("SELECT * FROM we_user WHERE u_name='$username' and u_pwd='$pwd' limit 1");
         $titles = $command->queryAll();
