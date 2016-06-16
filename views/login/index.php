@@ -88,9 +88,72 @@
 					</div>
 
 					<div class="page-content">
-						<img style="margin-left: 400px;margin-top: 180px" src="bw.png"/>
+						<div class="page-header">
+							<h1>
+								当前公众号
+								<small>
+									<i class="icon-double-angle-right">&nbsp;&nbsp;<?php echo $arr[0]['p_name']?></i>
+								</small>
+							</h1>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="table-responsive">
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+									<!-- <thead>
+										<tr>
+											<th>Domain</th>
+											<th>Price</th>
+										</tr>
+									</thead> -->
 
+									<tbody>
+										<tr>
+											<td style='width:100px;'>
+												<a href="#">微信名称:</a>
+											</td>
+											<td><?php echo $arr[0]['p_name']?></td>
+										</tr>
 
+										<tr>
+											<td style='width:100px;'>
+												<a href="#">类型:</a>
+											</td>
+											<td><?php echo $arr[0]['p_type']?></td>
+										</tr>
+
+										<tr>
+											<td>
+												<a href="#">AppID:</a>
+											</td>
+											<td><?php echo $arr[0]['p_AppID']?></td>
+										</tr>
+
+										<tr>
+											<td>
+												<a href="#">AppSecret:</a>
+											</td>
+											<td><?php echo $arr[0]['p_AppSecret']?></td>
+										</tr>
+
+										<tr>
+											<td>
+												<a href="#">URL:</a>
+											</td>
+											<td><?php echo $arr[0]['p_url']?></td>
+										</tr>
+
+										<tr>
+											<td>
+												<a href="#">Token:</a>
+											</td>
+											<td><?php echo $arr[0]['p_token']?></td>
+										</tr>
+									</tbody>
+								</table>
+								</div><!-- /.table-responsive -->
+							</div><!-- /span -->
+						</div>
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
 

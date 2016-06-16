@@ -7,6 +7,8 @@ class PublicController extends CoController
     public function actionAdd(){
             return $this->renderPartial("add");
     }
+
+	//
     public function actionAddall(){
         header('content-type:text/html;charset=utf8');
        /*
@@ -20,6 +22,8 @@ class PublicController extends CoController
         $session = \Yii::$app->session;
         $session->open();
         $id=$session->get('id');
+
+		//接值
         $publicName = \Yii::$app->request->post('publicName');
         $publicId = \Yii::$app->request->post('publicId');
         $publicSelect = \Yii::$app->request->post('publicSelect');
@@ -27,13 +31,12 @@ class PublicController extends CoController
         $command = $connection->createCommand("SELECT p_id FROM we_public WHERE p_name='$publicName'");
         $post = $command->queryOne();
         if($post){
-            echo "该公众号已经存在";
-            die;
+            return $this->redirect(['public/add']);
         }
         //生成tokey
         $tokey=$this->actionTokey();
         //生成url参数值
-        $urlget=$this->actionUget();
+        $urlget=$this->actionUget();//生成st
         //生成微信通信页面
         $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?'))."?r=wei/url&st=".$urlget;
         $connection->createCommand()->update('we_public', ['p_state' => 0], "p_state = 1 and u_id=$id")->execute();
@@ -83,7 +86,7 @@ class PublicController extends CoController
         return $str;
     }
 
-
+	//添加后查询展示
     public function actionAddselect(){
         $id =\Yii::$app->request->get('id');
         if($id==''){
@@ -122,5 +125,9 @@ class PublicController extends CoController
 		}else{
 			return false;
 		}
+	}
+
+	public function actionNew(){
+		echo "当前公众号";
 	}
 }

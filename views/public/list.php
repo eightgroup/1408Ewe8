@@ -105,134 +105,80 @@
 
 						<div class="row">
 							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
+							<div class="table-responsive">
+							<!-- 表单 -->
+							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="center">
+											<label>
+												<input type="checkbox" class="ace" />
+												<span class="lbl"></span>
+											</label>
+										</th>
+										<th>公众号名称</th>
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="table-responsive">
+										<th>公众号类型</th>
 
+										<th class="hidden-480">AppId</th>
 
+										<th>
+											<!-- <i class="icon-time bigger-110 hidden-480"></i> -->
+											AppSelect
+										</th>
 
+										<th class="hidden-480">Url</th>
 
-											<!-- 表单 -->
-											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th class="center">
-															<label>
-																<input type="checkbox" class="ace" />
-																<span class="lbl"></span>
-															</label>
-														</th>
-														<th>公众号名称</th>
-														<th>公众号类型</th>
-														<th class="hidden-480">AppId</th>
+										<th></th>
+									</tr>
+								</thead>
 
-														<th>
-															<i class="icon-time bigger-110 hidden-480"></i>
-															AppSelect
-														</th>
-														<th class="hidden-480">Url</th>
+								<tbody>
+									<?php foreach($list as $key=>$val ){?>
+									<tr >
+										<td class="center">
+											<label>
+												<input type="checkbox" class="ace" />
+												<span class="lbl"></span>
+											</label>
+										</td>
 
-														<th></th>
-													</tr>
-												</thead>
+										<td>
+											<a href="#"><?php echo $val['p_name']?></a>
+										</td>
+										<td><?php echo $val['p_type']?></td>
+										<td class="hidden-480"><?php echo $val['p_AppID']?></td>
+										<td><?php echo $val['p_AppSecret']?></td>
 
-												<tbody>
-                                                    <?php
-                                                        foreach($list as $key=>$val ){
-                                                     ?>
-                                                            <tr >
-                                                                <td class="center">
-                                                                    <label>
-                                                                        <input type="checkbox" class="ace" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
+										<td class="hidden-480">
+											<span class="label label-sm label-warning"><?php echo substr($val['p_url'],0,15)."....."?></span>
+										</td>
 
-                                                                <td>
-                                                                    <a href="#"><?php echo $val['p_name']?></a>
-                                                                </td>
-                                                                <td><?php echo $val['p_type']?></td>
-                                                                <td class="hidden-480"><?php echo $val['p_AppID']?></td>
-                                                                <td><?php echo $val['p_AppSecret']?></td>
+										<td>
+											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<!-- 查询 -->
+												<button class="btn btn-xs btn-success" name="sel" value="<?php echo $val['p_id']?>">
+													<i class="icon-ok bigger-120" ></i>
+												</button>
+												<!-- 修改 -->
+												<button class="btn btn-xs btn-info">
+													<i class="icon-edit bigger-120" ids="update"></i>
+												</button>
 
-                                                                <td class="hidden-480">
-                                                                    <span class="label label-sm label-warning"><?php echo substr($val['p_url'],0,15)."....."?></span>
-                                                                </td>
-
-                                                                <td>
-                                                                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                                                                    	<!-- 查询 -->
-                                                                        <button class="btn btn-xs btn-success" name="sel" value="<?php echo $val['p_id']?>">
-                                                                            <i class="icon-ok bigger-120" ></i>
-                                                                        </button>
-
-	                                                                        <button class="btn btn-xs btn-info">
-	                                                                            <i class="icon-edit bigger-120" ids="update"></i>
-	                                                                        </button>
-	                                                                        	<!-- 删除 -->
-									
-	                                                                        <button class="btn btn-xs btn-danger" onclick="del(<?php echo $val['p_id']?>)" id="<?php echo $val['p_id']?>">
-	                                                                            <i class="icon-trash bigger-120" ids="del"></i>
-	                                                                        </button>
-
-	                                                                        <button class="btn btn-xs btn-warning">
-	                                                                            <i class="icon-flag bigger-120"></i>
-	                                                                        </button>
-	                                                                    </div>
-
-	                                                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
-	                                                                        <div class="inline position-relative">
-	                                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
-	                                                                                <i class="icon-cog icon-only bigger-110"></i>
-	                                                                            </button>
-
-	                                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-	                                                                                <li>
-	                                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																					<span class="blue">
-																						<i class="icon-zoom-in bigger-120"></i>
-																					</span>
-	                                                                                    </a>
-	                                                                                </li>
-
-	                                                                                <li>
-	                                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																					<span class="green">
-																						<i class="icon-edit bigger-120"></i>
-																					</span>
-	                                                                                    </a>
-	                                                                                </li>
-
-	                                                                                <li>
-	                                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																					<span class="red">
-																						<i class="icon-trash bigger-120"></i>
-																					</span>
-	                                                                                    </a>
-	                                                                                </li>
-	                                                                            </ul>
-	                                                                        </div>
-	                                                                    </div>
-	                                                                </td>
-	                                                            </tr>
-	                                                    <?php
-	                                                        }
-	                                                    ?>
-
-													</tbody>
-												</table>
-												<!-- 表格结束-->
-
-										</div><!-- /.table-responsive -->
-									</div><!-- /span -->
-								</div><!-- /row -->
-
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-
-
+												<!-- 删除 -->
+												<button class="btn btn-xs btn-danger" onclick="del(<?php echo $val['p_id']?>)" id="<?php echo $val['p_id']?>">
+													<i class="icon-trash bigger-120" ids="del"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<?php } ?>
+								</tbody>
+							</table>
+							<!-- 表格结束-->
+							</div><!-- /.table-responsive -->
+							</div><!-- /span -->
+						</div><!-- /row -->
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
 
@@ -377,7 +323,7 @@
 						var id=$(this).val();
 						$.ajax({
 							type:'post',
-							url:"http://www.yii.com/1408Ewe8/web/index.php?r=public/sel",
+							url:"index.php?r=public/sel",
 							data:{
 								id:id
 							},
@@ -386,45 +332,42 @@
 								var str='';
 									if(msg)	{
 										var str=''
-					str+="<table id='table2'  border=1 class='table table-striped table-bordered table-hover'>";
-							str+="<tr>";
-								str+="<td>公众号名称</td>";
-								str+="<td>"+msg.p_name+"</td>";
-							str+="</tr>";
-							str+="<tr>";
-								str+="<td>公众号类型</td>"
-								str+="<td>"+msg.p_type+"</td>";
-							str+="</tr>";
-							str+="<tr>";
-								str+="<td>AppId</td>"
-								str+="<td>"+msg.p_AppID+"</td>";
-							str+="</tr>";
-							str+="<tr>";
-								str+="<td>AppSelect</td>"
-								str+="<td>"+msg.p_AppSecret+"</td>";
-							str+="</tr>";
-							str+="<tr>";
-								str+="<td>Url</td>"
-								str+="<td>"+msg.p_url+"</td>";
-							str+="</tr>";
-							str+="<tr>";
-								str+="<td>Token</td>"
-								str+="<td>"+msg.p_token+"</td>";
-							str+="</tr>";
-									
-							str+="</table>";
+										str+="<table id='table2'  border=1 class='table table-striped table-bordered table-hover'>";
+										str+="<tr>";
+											str+="<td>公众号名称</td>";
+											str+="<td>"+msg.p_name+"</td>";
+										str+="</tr>";
+										str+="<tr>";
+											str+="<td>公众号类型</td>"
+											str+="<td>"+msg.p_type+"</td>";
+										str+="</tr>";
+										str+="<tr>";
+											str+="<td>AppId</td>"
+											str+="<td>"+msg.p_AppID+"</td>";
+										str+="</tr>";
+										str+="<tr>";
+											str+="<td>AppSelect</td>"
+											str+="<td>"+msg.p_AppSecret+"</td>";
+										str+="</tr>";
+										str+="<tr>";
+											str+="<td>Url</td>"
+											str+="<td>"+msg.p_url+"</td>";
+										str+="</tr>";
+										str+="<tr>";
+											str+="<td>Token</td>"
+											str+="<td>"+msg.p_token+"</td>";
+										str+="</tr>";
+												
+										str+="</table>";
 										// alert(str)
 									$('#table2').remove();
 									$('table').after(str)
-									}else{
-
 									}	
 							
 								}
 
 						})
 						
-						// tbody.appendTo(str);
 					})
 
 
