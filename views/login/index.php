@@ -3,44 +3,50 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>微e管理系统</title>
-        <script src="js/jq.js"></script>
-        <script src="js/user.js"></script>
+        <script>
+            var a="<?php echo URL?>/web/js/witch"
+            var b="<?php echo URL?>/web/js/public"
+            var c="<?php echo URL?>/web/js/current"
+            var d="<?php echo URL?>/web/js/user"
+        </script>
+        <script src="<?php echo URL?>/web/js/jq.js"></script>
+        <script src="<?php echo URL?>/web/js/user.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="../views/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../views/assets/css/font-awesome.min.css" />
+		<link href="<?php echo URL?>/views/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="<?php echo URL?>/web/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="" />
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="../views/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="../views/assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="../views/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="../views/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
 
-		<script src="../views/assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="../views/assets/js/html5shiv.js"></script>
-		<script src="../views/assets/js/respond.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/html5shiv.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -88,7 +94,7 @@
 					</div>
 
 					<div class="page-content">
-						<img style="margin-left: 400px;margin-top: 180px" src="bw.png"/>
+						<img style="margin-left: 400px;margin-top: 180px" src="<?php echo URL?>/web/bw.png"/>
 
 
 					</div><!-- /.page-content -->
@@ -161,42 +167,42 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='../views/assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<?php echo URL?>/views/assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+ window.jQuery || document.write("<script src='<?php echo URL?>/web/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='../views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo URL?>/views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="../views/assets/js/bootstrap.min.js"></script>
-		<script src="../views/assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
+		  <script src="<?php echo URL?>/web/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-		<script src="../views/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="../views/assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="../views/assets/js/jquery.slimscroll.min.js"></script>
-		<script src="../views/assets/js/jquery.easy-pie-chart.min.js"></script>
-		<script src="../views/assets/js/jquery.sparkline.min.js"></script>
-		<script src="../views/assets/js/flot/jquery.flot.min.js"></script>
-		<script src="../views/assets/js/flot/jquery.flot.pie.min.js"></script>
-		<script src="../views/assets/js/flot/jquery.flot.resize.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/jquery.sparkline.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/flot/jquery.flot.resize.min.js"></script>
 
 		<!-- ace scripts -->
 
-		<script src="../views/assets/js/ace-elements.min.js"></script>
-		<script src="../views/assets/js/ace.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo URL?>/views/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 
@@ -391,8 +397,6 @@
 					if(this.checked) $(this).closest('li').addClass('selected');
 					else $(this).closest('li').removeClass('selected');
 				});
-
-
 			})
 		</script>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>

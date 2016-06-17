@@ -5,30 +5,35 @@
 		<meta charset="utf-8" />
 		<title>微e管理系统</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src='js/jq.js'></script>
-        <script src="js/login.js"></script>
+        <script>
+            //ur1 后台验证密码
+            var url="<?php echo URL?>/web/login/proving"
+            //url2 登录跳转
+            var url1="<?php echo URL?>/web/login/login"
+        </script>
+        <script src='<?php echo URL?>/web/js/jq.js'></script>
+        <script src="<?php echo URL?>/web/js/login.js"></script>
 		<!-- basic styles -->
-
-		<link href="../views/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../views/assets/css/font-awesome.min.css" />
+		<link href="<?php echo URL?>/views/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo URL?>views/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="<?php echo URL?>/web/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="" />
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="../views/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="../views/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace-rtl.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="<?php echo URL?>/web/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
@@ -36,8 +41,8 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="<?php echo URL?>/web/assets/js/html5shiv.js"></script>
+		<script src="<?php echo URL?>/web/assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -288,12 +293,12 @@
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='<?php echo URL?>/web/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='../views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo URL?>/views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->

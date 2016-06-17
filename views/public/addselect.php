@@ -4,25 +4,31 @@
     <meta charset="utf-8" />
     <title>微e后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="js/jq.js"></script>
-    <script src="js/user.js"></script>
+    <script>
+    var a="<?php echo URL?>/web/js/witch"
+    var b="<?php echo URL?>/web/js/public"
+    var c="<?php echo URL?>/web/js/current"
+    var d="<?php echo URL?>/web/js/user"
+     </script>
+    <script src="<?php echo URL?>/web/js/jq.js"></script>
+    <script src="<?php echo URL?>/web/js/user.js"></script>
     <!-- basic styles -->
 
-    <link href="../views/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../views/assets/css/font-awesome.min.css" />
+    <link href="<?php echo URL?>/views/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/font-awesome.min.css" />
 
     <!--[if IE 7]>
-    <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/web/assets/css/font-awesome-ie7.min.css" />
     <![endif]-->
 
     <!-- page specific plugin styles -->
 
-    <link rel="stylesheet" href="../views/assets/css/jquery-ui-1.10.3.custom.min.css" />
-    <link rel="stylesheet" href="../views/assets/css/chosen.css" />
-    <link rel="stylesheet" href="../views/assets/css/datepicker.css" />
-    <link rel="stylesheet" href="../views/assets/css/bootstrap-timepicker.css" />
-    <link rel="stylesheet" href="../views/assets/css/daterangepicker.css" />
-    <link rel="stylesheet" href="../views/assets/css/colorpicker.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/chosen.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/datepicker.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/daterangepicker.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/colorpicker.css" />
 
     <!-- fonts -->
 
@@ -30,26 +36,26 @@
 
     <!-- ace styles -->
 
-    <link rel="stylesheet" href="../views/assets/css/ace.min.css" />
-    <link rel="stylesheet" href="../views/assets/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="../views/assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/views/assets/css/ace-skins.min.css" />
 
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="<?php echo URL?>/web/assets/css/ace-ie.min.css" />
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
 
-    <script src="../views/assets/js/jquery.js"></script>
-	<script src="../views/assets/js/ace-extra.min.js"></script>
+    <script src="<?php echo URL?>/views/assets/js/jquery.js"></script>
+	<script src="<?php echo URL?>/views/assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!--[if lt IE 9]>
-    <script src="../views/assets/js/html5shiv.js"></script>
-    <script src="../views/assets/js/respond.min.js"></script>
+    <script src="<?php echo URL?>/views/assets/js/html5shiv.js"></script>
+    <script src="<?php echo URL?>/views/assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -344,41 +350,41 @@
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='../views/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='<?php echo URL?>/views/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 <script type="text/javascript">
-    if("ontouchend" in document) document.write("<script src='../views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if("ontouchend" in document) document.write("<script src='<?php echo URL?>/views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="../views/assets/js/bootstrap.min.js"></script>
-<script src="../views/assets/js/typeahead-bs2.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/bootstrap.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
 <!--[if lte IE 8]>
-<script src="../views/assets/js/excanvas.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/excanvas.min.js"></script>
 <![endif]-->
 
-<script src="../views/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="../views/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="../views/assets/js/chosen.jquery.min.js"></script>
-<script src="../views/assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="../views/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="../views/assets/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="../views/assets/js/date-time/moment.min.js"></script>
-<script src="../views/assets/js/date-time/daterangepicker.min.js"></script>
-<script src="../views/assets/js/bootstrap-colorpicker.min.js"></script>
-<script src="../views/assets/js/jquery.knob.min.js"></script>
-<script src="../views/assets/js/jquery.autosize.min.js"></script>
-<script src="../views/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="../views/assets/js/jquery.maskedinput.min.js"></script>
-<script src="../views/assets/js/bootstrap-tag.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/chosen.jquery.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/fuelux/fuelux.spinner.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/date-time/moment.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/date-time/daterangepicker.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/jquery.knob.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/jquery.autosize.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/jquery.maskedinput.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/bootstrap-tag.min.js"></script>
 
 <!-- ace scripts -->
 
-<script src="../views/assets/js/ace-elements.min.js"></script>
-<script src="../views/assets/js/ace.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/ace-elements.min.js"></script>
+<script src="<?php echo URL?>/views/assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 

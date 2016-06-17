@@ -26,10 +26,10 @@
         if(fun_username()&fun_pwd()){
             var username= document.getElementById('username').value
             var pwd= document.getElementById('pwd').value
-            $.post("index.php?r=login/proving",{username:username,pwd:pwd}, function(data){
+            $.post(url,{username:username,pwd:pwd}, function(data){
                 if(data){
                     //alert(data)
-                    location.href='index.php?r=login/login'
+                    location.href=url1
                 }else{
                     document.getElementById('tishi').innerHTML = '您的账号或者密码错误'
                 }

@@ -40,7 +40,7 @@
 
 					<ul class="nav nav-list">
 						<li class="active">
-							<a href="index.php?r=login/login">
+							<a href="<?php echo URL?>/web/login/login">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 当前公众号 </span>
 							</a>
@@ -56,14 +56,14 @@
 
 							<ul class="submenu">
 								<li>
-									<a href="index.php?r=public/add">
+									<a href="<?php echo URL?>/web/public/add">
 										<i class="icon-double-angle-right"></i>
 										添加公众号
 									</a>
 								</li>
 
 								<li>
-									<a href="index.php?r=public/list">
+									<a href="<?php echo URL?>/web/public/list">
 										<i class="icon-double-angle-right"></i>
 										查看公众号
 									</a>
@@ -124,14 +124,14 @@
 
 							<ul class="submenu">
 								<li>
-									<a href="index.php?r=rule/add">
+									<a href="<?php echo URL?>/web/rule/add">
 										<i class="icon-double-angle-right"></i>
 										添加规则
 									</a>
 								</li>
 
 								<li>
-									<a href="index.php?r=rule/list">
+									<a href="<?php echo URL?>/web/public/list">
 										<i class="icon-double-angle-right"></i>
 										查看规则
 									</a>
@@ -149,14 +149,14 @@
 
 							<ul class="submenu">
 								<li>
-									<a href="index.php?r=menu/add">
+									<a href="<?php echo URL?>/web/menu/add">
 										<i class="icon-double-angle-right"></i>
 										添加菜单
 									</a>
 								</li>
 
 								<li>
-									<a href="index.php?r=menu/list">
+									<a href="<?php echo URL?>/web/menu/list">
 										<i class="icon-double-angle-right"></i>
 										查看菜单
 									</a>

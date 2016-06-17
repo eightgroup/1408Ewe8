@@ -2,6 +2,7 @@
 namespace app\controllers;
 class CoController extends \yii\web\Controller{
     public function init(){
+        //$src= \Yii::$app->request->url.'../../../1.jpg';
         parent::init();
         $session = \Yii::$app->session;
         $session->open();

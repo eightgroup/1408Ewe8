@@ -1,7 +1,6 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-
 $config = [
 	'defaultRoute' => 'login',
     'id' => 'basic',
@@ -9,6 +8,17 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+
+    	 'urlManager' => [
+             'enablePrettyUrl' => true,
+             'showScriptName' => false,//隐藏index.php
+             //‘enableStrictParsing‘ => false,
+             //'suffix' => '.html',//后缀，如果设置了此项，那么浏览器地址栏就必须带上.html后缀，否则会报404错误
+             'rules' => [
+                 //‘<controller:\w+>/<action:\w+>‘=>‘<controller>/<action>‘,
+             ],
+         ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '38838938936689',
