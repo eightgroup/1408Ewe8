@@ -9,6 +9,8 @@ class JsController extends \yii\web\Controller{
         $session->open();
         return $session->get('name');
     }
+
+	//查询公众号
     public function actionPublic(){
         $session = \Yii::$app->session;
         $session->open();
@@ -25,6 +27,8 @@ class JsController extends \yii\web\Controller{
         }
         echo $str;
     }
+
+	//公众号切换
     public function actionCurrent(){
         $session = \Yii::$app->session;
         $session->open();
@@ -41,6 +45,8 @@ class JsController extends \yii\web\Controller{
         }
         echo $str;
     }
+
+	//修改切换后的数据库状态
     public function actionWitch(){
         $id = \Yii::$app->request->post('id');
         $session = \Yii::$app->session;

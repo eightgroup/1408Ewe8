@@ -7,6 +7,8 @@ class PublicController extends CoController
     public function actionAdd(){
             return $this->renderPartial("add");
     }
+
+	//
     public function actionAddall(){
         header('content-type:text/html;charset=utf8');
        /*
@@ -20,6 +22,8 @@ class PublicController extends CoController
         $session = \Yii::$app->session;
         $session->open();
         $id=$session->get('id');
+
+		//接值
         $publicName = \Yii::$app->request->post('publicName');
         $publicId = \Yii::$app->request->post('publicId');
         $publicSelect = \Yii::$app->request->post('publicSelect');
@@ -27,13 +31,12 @@ class PublicController extends CoController
         $command = $connection->createCommand("SELECT p_id FROM we_public WHERE p_name='$publicName'");
         $post = $command->queryOne();
         if($post){
-            echo "该公众号已经存在";
-            die;
+            return $this->redirect(['public/add']);
         }
         //生成tokey
         $tokey=$this->actionTokey();
         //生成url参数值
-        $urlget=$this->actionUget();
+        $urlget=$this->actionUget();//生成st
         //生成微信通信页面
         $url=URL.'/web/wei/url?st='.$urlget;
         $connection->createCommand()->update('we_public', ['p_state' => 0], "p_state = 1 and u_id=$id")->execute();
@@ -83,9 +86,9 @@ class PublicController extends CoController
         return $str;
     }
 
-
+	//添加后查询展示
     public function actionAddselect(){
-        $id =$_GET['id'];
+        $id =\Yii::$app->request->get('id');
         if($id==''){
             return false;
         }
@@ -98,15 +101,33 @@ class PublicController extends CoController
         return $this->renderPartial("addselect",array('list'=>$post));
     }
 
+    function  actionSel(){
+        $id=\Yii::$app->request->post('id');
+         if($id==''){
+            return false;
+        }
+        $connection = \Yii::$app->db;
+        $command = $connection->createCommand("SELECT * FROM we_public WHERE p_id=$id");
+        $post = $command->queryOne();
+        if(!$post){
+            return false;
+        }
+        echo json_encode($post);
+    }
+
 	//删除公众号
 	public function actionDel(){
 		$request=Yii::$app->request;
 		$id=$request->get('id');
 		$re=Yii::$app->db->createCommand()->delete('we_public',"p_id=:id",[':id'=> $id])->execute();
 		if($re){
-			echo true;
+			return true;
 		}else{
-			echo false;
+			return false;
 		}
+	}
+
+	public function actionNew(){
+		echo "当前公众号";
 	}
 }

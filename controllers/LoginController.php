@@ -1,5 +1,6 @@
 <?php
 namespace app\controllers;
+use Yii;
 //核心控制器
 class LoginController extends \yii\web\Controller
 {
@@ -11,6 +12,7 @@ class LoginController extends \yii\web\Controller
         $session->open();
         $name = $session->get('name')?$session->get('name'):'';
         $pwd = $session->get('pwd')?$session->get('pwd'):'';
+		//echo $name.$pwd;die;
         if($name && $pwd){
 			return $this->renderPartial('login',['name'=>$name,'pwd'=>$pwd]);
         }else{
@@ -19,17 +21,24 @@ class LoginController extends \yii\web\Controller
     }
     //展示登录页面
     public function actionLogin(){
+        //开启session
         $session = \Yii::$app->session;
         $session->open();
         if($session->get('id')==''){
             echo "<script>alert('请先登录');location.href='index.php?r=login/index'</script>";
         }else{
-            return $this->renderPartial('index');
+            //视图
+			$arr=Yii::$app->db->createCommand('select * from we_public where p_state=1');
+			$arr=$arr->queryAll();
+			//var_dump($arr);die;
+            return $this->renderPartial('index',['arr'=>$arr]);
         }
     }
     public function actionForget(){
         echo "忘记密码";die;
     }
+
+	//注册
     public function actionRegister(){
         $request=Yii::$app->request;
         $u_name=$request->post('u_name');
@@ -46,8 +55,8 @@ class LoginController extends \yii\web\Controller
     public function actionProving(){
         $username = \Yii::$app->request->post('username');
         $pwd = \Yii::$app->request->post('pwd');
-        $remember = \Yii::$app->request->post('remember')?\Yii::$app->request->post('remember'):'';
-        //var_dump($remember);die;
+        $remember = \Yii::$app->request->post('remember');
+		//echo $remember;die;
         $connection = \Yii::$app->db;
         $command = $connection->createCommand("SELECT * FROM we_user WHERE u_name='$username' and u_pwd='$pwd' limit 1");
         $titles = $command->queryAll();
@@ -65,4 +74,13 @@ class LoginController extends \yii\web\Controller
             echo false;
         }
     }
+	
+	//退出
+	public function actionExit(){
+		$session=Yii::$app->session;
+		unset ($session['name']);
+		unset ($session['pwd']);
+		Yii::$app->getSession()->setFlash('success','退出成功');
+		return $this->redirect(['login/index']);
+	}
 }

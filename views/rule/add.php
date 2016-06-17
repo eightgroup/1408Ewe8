@@ -87,13 +87,13 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="#">控制台</a>
 							</li>
 
 							<li>
-								<a href="#">Forms</a>
+								<a href="#">消息管理</a>
 							</li>
-							<li class="active">Form Elements</li>
+							<li class="active">添加规则</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -109,10 +109,10 @@
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								Form Elements
+								消息管理
 								<small>
 									<i class="icon-double-angle-right"></i>
-									Common form elements and layouts
+									添加规则
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
