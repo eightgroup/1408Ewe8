@@ -94,11 +94,6 @@
 					</div>
 
 					<div class="page-content">
-<<<<<<< HEAD
-						<img style="margin-left: 400px;margin-top: 180px" src="<?php echo URL?>/web/bw.png"/>
-
-
-=======
 						<div class="page-header">
 							<h1>
 								当前公众号
@@ -165,7 +160,6 @@
 								</div><!-- /.table-responsive -->
 							</div><!-- /span -->
 						</div>
->>>>>>> e2235ff5ae0903bc5fdefee6db8c7cd07143901e
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
 

@@ -671,6 +671,6 @@
 </html>
 <script>
     function add(){
-        location.href='index.php?r=public/list'
+        location.href="<?php echo URL?>/web/public/list"
     }
 </script>
