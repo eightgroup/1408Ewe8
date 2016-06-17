@@ -329,7 +329,7 @@
 						var id=$(this).val();
 						$.ajax({
 							type:'post',
-							url:"index.php?r=public/sel",
+							url:"<?php echo URL?>/web/public/sel",
 							data:{
 								id:id
 							},

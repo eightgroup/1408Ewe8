@@ -15,7 +15,7 @@
         <script src="<?php echo URL?>/web/js/login.js"></script>
 		<!-- basic styles -->
 		<link href="<?php echo URL?>/views/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="<?php echo URL?>views/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="<?php echo URL?>/views/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="<?php echo URL?>/web/assets/css/font-awesome-ie7.min.css" />
