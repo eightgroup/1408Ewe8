@@ -18,6 +18,7 @@ class wechatCallbackapiTest
         //valid signature , option
         if($this->checkSignature()){
         	echo $echoStr;
+            $this->responseMsg();
         	exit;
         }
     }
@@ -48,7 +49,13 @@ class wechatCallbackapiTest
 				if(!empty( $keyword ))
                 {
               		$msgType = "text";
-                	$contentStr = "Welcome to wechat world!";
+                    if($arr){
+                           foreach($arr as $key=>$val){
+                               if($val['r_keyword']==$keyword){
+                                   $contentStr = $val['p_content'];
+                               }
+                           }
+                    }
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }else{
