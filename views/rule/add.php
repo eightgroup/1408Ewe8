@@ -136,12 +136,8 @@
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 回复类型 : </label>
 
 									<div class="col-sm-9">
-<<<<<<< HEAD
 										<input type="radio" name="hui" value="1" checked/>关键字回复&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="radio" name="hui" value="2"/>全文回复
-=======
-										<input type="text" id="form-field-2" placeholder="回复类型..." class="col-xs-10 col-sm-5" />
->>>>>>> a80cfe56c37a6374a0a522f81ed6c81900f34f16
 									</div>
 								</div>
 
@@ -161,11 +157,7 @@
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-4">添加回复内容 : </label>
 
 									<div class="col-sm-9">
-<<<<<<< HEAD
-										<textarea name="" rows="5" cols="14" id="form-field-3" class="col-xs-10 col-sm-5" placeholder="添加回复内容..."></textarea>
-=======
-										<textarea name="" rows="5" cols="14" id="form-field-2" class="col-xs-10 col-sm-5" placeholder="添加回复内容..."></textarea>
->>>>>>> a80cfe56c37a6374a0a522f81ed6c81900f34f16
+										<textarea name="" rows="5" cols="14" id="form-field-3" class="col-xs-10 col-sm-5" placeholder="添加回复内..."></textarea>
 									</div>
 								</div>
 								
@@ -173,11 +165,7 @@
 
 								<div class="clearfix form-actions">
 									<div class="col-md-offset-3 col-md-9">
-<<<<<<< HEAD
 										<button class="btn btn-info" id="button" type="button">
-=======
-										<button class="btn btn-info" type="button">
->>>>>>> a80cfe56c37a6374a0a522f81ed6c81900f34f16
 											<i class="icon-ok bigger-110"></i>
 											Submit
 										</button>
@@ -196,54 +184,6 @@
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
-
-				<!-- <div class="ace-settings-container" id="ace-settings-container">
-					<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-						<i class="icon-cog bigger-150"></i>
-					</div>
-				
-					<div class="ace-settings-box" id="ace-settings-box">
-						<div>
-							<div class="pull-left">
-								<select id="skin-colorpicker" class="hide">
-									<option data-skin="default" value="#438EB9">#438EB9</option>
-									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-								</select>
-							</div>
-							<span>&nbsp; Choose Skin</span>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
-							<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
-							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
-							<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
-							<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
-							<label class="lbl" for="ace-settings-add-container">
-								Inside
-								<b>.container</b>
-							</label>
-						</div>
-					</div>
-				</div> --><!-- /#ace-settings-container -->
 			</div><!-- /.main-container-inner -->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
