@@ -19,7 +19,7 @@ class LoginController extends \yii\web\Controller
             return $this->renderPartial('login');
         }
     }
-    //展示登录页面
+    //展示登录页面,并展示当前
     public function actionLogin(){
         //开启session
         $session = \Yii::$app->session;
