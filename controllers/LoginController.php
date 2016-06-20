@@ -7,17 +7,24 @@ class LoginController extends \yii\web\Controller
     public $layout='';
     public $enableCsrfValidation = false;
     public function actionIndex()
-    {
-        $session = \Yii::$app->session;
+    {   
+       
+            if(file_exists('../vendor/install.php')){
+                  $session = \Yii::$app->session;
         $session->open();
         $name = $session->get('name')?$session->get('name'):'';
         $pwd = $session->get('pwd')?$session->get('pwd'):'';
-		//echo $name.$pwd;die;
+        //echo $name.$pwd;die;
         if($name && $pwd){
-			return $this->renderPartial('login',['name'=>$name,'pwd'=>$pwd]);
+            return $this->renderPartial('login',['name'=>$name,'pwd'=>$pwd]);
         }else{
             return $this->renderPartial('login');
         }
+    }else{
+       return $this->redirect(['stall/install'],301);
+    }
+        
+      
     }
     //展示登录页面,并展示当前
     public function actionLogin(){
