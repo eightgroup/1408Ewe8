@@ -15,9 +15,11 @@
 
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="light-blue">
+
+
+    <!--             <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <!--<img class="nav-user-photo" src="../views/assets/avatars/user.jpg" alt="Jason's Photo" />-->
+                      
 								<span class="user-info" id="mypublic">
 									<small>您当前操作的是,</small>
 									
@@ -31,6 +33,9 @@
                     </ul>
 
                 </li>
+ -->
+
+
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" src="<?php echo URL?>/views/assets/avatars/user.jpg" alt="Jason's Photo" />
