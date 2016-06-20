@@ -10,11 +10,30 @@ class StallController extends \yii\web\Controller{
         return $this->renderPartial('stall');
     }
     public function actionInstall1(){
-        return $this->renderPartial('stall1');
+        $config=$this->actionDir_writeable('../config');
+        $vendor=$this->actionDir_writeable('../vendor');
+        //echo $config;die;
+        return $this->renderPartial('stall1',array('config'=>$config,'vendor'=>$vendor));
     }
     public function actionInstall2(){
+        
         return $this->renderPartial('stall2');
     }
+    public function actionDir_writeable($dir) {
+        if(!is_dir($dir)) {
+            @mkdir($dir, 0777);
+        }
+        if(is_dir($dir)) {
+            if($fp = @fopen("$dir/test.txt", 'w')) {
+                @fclose($fp);
+                @unlink("$dir/test.txt");
+                $writeable = 1;
+            } else {
+                $writeable = 0;
+            }
+        }
+        return $writeable;
+      }
     public function actionInstall3(){
         return $this->renderPartial('stall3');
     }
@@ -39,7 +58,7 @@ class StallController extends \yii\web\Controller{
             }else{
                 echo 1;
             }
-       mysql_query("create database $dbname");
+        mysql_query("create database $dbname");
         $sql=file_get_contents("we2.sql");
         mysql_select_db($dbname);
         $a=explode(";",$sql);
@@ -50,8 +69,8 @@ class StallController extends \yii\web\Controller{
  $sql4="insert into we_user(u_id,u_name,u_pwd)values(null,'$user','$pwd')";
    $re=mysql_query($sql4);
       $fh = fopen("../vendor/install.php","w");
-
-
+      $str="<?php return ['class' => 'yii\db\Connection','dsn' => 'mysql:host=$server;dbname=$dbname','username' => '$username','password' => '$password','charset' => 'utf8',];";
+      file_put_contents('../config/db.php',$str);
 
 
     //     mysqli_query($link,"set name utf8");

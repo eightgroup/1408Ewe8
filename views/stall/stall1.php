@@ -172,14 +172,30 @@
 				</tr>
 				<tr class="success">
 					<td>/</td>
-					<td>整目录可写</td>
-					<td><span class="glyphicon glyphicon-ok text-success"></span></td>
+					<td>config目录可写</td>
+					<td><span class="glyphicon glyphicon-ok text-success">
+					<?php 
+						if($config==1){
+							echo "ok";
+						}else{
+							echo 'no';
+						}
+					?>
+					</span></td>
 					<td></td>
 				</tr>
 				<tr class="success">
 					<td>/</td>
-					<td>data目录可写</td>
-					<td><span class="glyphicon glyphicon-ok text-success"></span></td>
+					<td>vendor目录可写</td>
+					<td><span class="glyphicon glyphicon-ok text-success">
+						<?php 
+						if($vendor==1){
+							echo "ok";
+						}else{
+							echo 'no';
+						}
+					?>
+					</span></td>
 					<td></td>
 				</tr>
 			</tbody></table>

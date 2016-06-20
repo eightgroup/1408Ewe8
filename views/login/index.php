@@ -98,7 +98,7 @@
 							<h1>
 								当前公众号
 								<small>
-									<i class="icon-double-angle-right">&nbsp;&nbsp;<?php echo $arr[0]['p_name']?></i>
+									<i class="icon-double-angle-right">&nbsp;&nbsp;</i>
 								</small>
 							</h1>
 						</div>
@@ -113,50 +113,50 @@
 										</tr>
 									</thead> -->
 
-									<tbody>
+									<!-- <tbody>
 										<tr>
 											<td style='width:100px;'>
 												<a href="#">微信名称:</a>
 											</td>
-											<td><?php echo $arr[0]['p_name']?></td>
+											<td></td>
 										</tr>
 
 										<tr>
 											<td style='width:100px;'>
 												<a href="#">类型:</a>
 											</td>
-											<td><?php echo $arr[0]['p_type']?></td>
+											<td></td>
 										</tr>
 
 										<tr>
 											<td>
 												<a href="#">AppID:</a>
 											</td>
-											<td><?php echo $arr[0]['p_AppID']?></td>
+											<td></td>
 										</tr>
 
 										<tr>
 											<td>
 												<a href="#">AppSecret:</a>
 											</td>
-											<td><?php echo $arr[0]['p_AppSecret']?></td>
+											<td></td>
 										</tr>
 
 										<tr>
 											<td>
 												<a href="#">URL:</a>
 											</td>
-											<td><?php echo $arr[0]['p_url']?></td>
+											<td></td>
 										</tr>
 
 										<tr>
 											<td>
 												<a href="#">Token:</a>
 											</td>
-											<td><?php echo $arr[0]['p_token']?></td>
+											<td></td>
 										</tr>
 									</tbody>
-								</table>
+								</table>-->
 								</div><!-- /.table-responsive -->
 							</div><!-- /span -->
 						</div>

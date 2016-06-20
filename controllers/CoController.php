@@ -7,7 +7,7 @@ class CoController extends \yii\web\Controller{
         $session = \Yii::$app->session;
         $session->open();
         if($session->get('id')==''){
-            echo "<script>alert('请先登录');location.href='index.php?r=login/index'</script>";
+           echo "<script>alert('请先登录');location.href='index'</script>";
         }
     }
 }

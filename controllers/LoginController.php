@@ -21,7 +21,8 @@ class LoginController extends \yii\web\Controller
             return $this->renderPartial('login');
         }
     }else{
-       return $this->redirect(['stall/install'],301);
+         //header("location:".URL."/web/stall/install");
+       return $this->redirect(['stall/install']);
     }
         
       
@@ -32,13 +33,13 @@ class LoginController extends \yii\web\Controller
         $session = \Yii::$app->session;
         $session->open();
         if($session->get('id')==''){
-            echo "<script>alert('请先登录');location.href='index.php?r=login/index'</script>";
+            echo "<script>alert('请先登录');location.href='index'</script>";
         }else{
             //视图
 			$arr=Yii::$app->db->createCommand('select * from we_public where p_state=1');
 			$arr=$arr->queryAll();
 			//var_dump($arr);die;
-            return $this->renderPartial('index',['arr'=>$arr]);
+            return $this->renderPartial('index');
         }
     }
     public function actionForget(){
