@@ -1,7 +1,9 @@
 <?php
 
 namespace app\controllers;
-
+use Yii;
+use yii\data\Pagination;
+use app\models\WeRule;
 class RuleController extends CoController
 {
     public $enableCsrfValidation = false;
@@ -31,9 +33,30 @@ class RuleController extends CoController
             'p_id'=>$pid,
             'p_content'=>$content
         ])->execute();
+		return "添加成功!";
     }
+
+	//规则列表
     public function actionList(){
-        return $this->renderPartial('list');
+		$arr=Yii::$app->db->createCommand("select p_id,p_name from we_public where p_state=1");
+		$arr=$arr->queryAll();
+		$p_id=$arr[0]['p_id'];
+        $query = WeRule::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 3,
+            'totalCount' => $query->where("p_id=$p_id")->count(),
+        ]);
+
+        $countries = $query->where("p_id=$p_id")
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->renderPartial('list', [
+            'countries' => $countries,
+            'pagination' => $pagination,
+        ]);
     }
 
 }

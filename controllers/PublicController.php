@@ -1,6 +1,8 @@
 <?php
 namespace app\controllers;
 use Yii;
+use yii\data\Pagination;
+use app\models\WePublic ;
 class PublicController extends CoController
 {
     public $enableCsrfValidation = false;
@@ -69,10 +71,22 @@ class PublicController extends CoController
         $session = \Yii::$app->session;
         $session->open();
         $id=$session->get('id');
-        $connection = \Yii::$app->db;
-        $command = $connection->createCommand("select * from we_public where u_id=$id");
-        $post = $command->queryAll();
-        return $this->renderPartial('list',array('list'=>$post));
+        $query = WePublic::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 3,
+            'totalCount' => $query->where("u_id=$id")->count(),
+        ]);
+
+        $countries = $query->where("u_id=$id")
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->renderPartial('list', [
+            'countries' => $countries,
+            'pagination' => $pagination,
+        ]);
     }
     //生成URl随机给值
     public function actionUget($len=50, $chars=null){
