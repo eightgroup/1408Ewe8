@@ -2,7 +2,6 @@
 
 $params = require(__DIR__ . '/params.php');
 $config = [
-	'defaultRoute' => 'login',
     'id' => 'basic',
 	'defaultRoute'=>'login',
     'basePath' => dirname(__DIR__),

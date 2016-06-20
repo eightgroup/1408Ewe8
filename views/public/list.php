@@ -1,3 +1,8 @@
+<?php
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -140,7 +145,7 @@
 								</thead>
 
 								<tbody>
-									<?php foreach($list as $key=>$val ){?>
+                                <?php foreach ($countries as $val): ?>
 									<tr >
 										<td class="center">
 											<label>
@@ -178,9 +183,10 @@
 											</div>
 										</td>
 									</tr>
-									<?php } ?>
+                                <?php endforeach; ?>
 								</tbody>
 							</table>
+                                <?= LinkPager::widget(['pagination' => $pagination]) ?>
 							<!-- 表格结束-->
 							</div><!-- /.table-responsive -->
 							</div><!-- /span -->

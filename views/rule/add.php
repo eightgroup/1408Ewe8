@@ -157,7 +157,7 @@
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-4">添加回复内容 : </label>
 
 									<div class="col-sm-9">
-										<textarea name="" rows="5" cols="14" id="form-field-2" class="col-xs-10 col-sm-5" placeholder="添加回复内容..."></textarea>
+										<textarea name="" rows="5" cols="14" id="form-field-3" class="col-xs-10 col-sm-5" placeholder="添加回复内容..."></textarea>
 									</div>
 								</div>
 								
@@ -537,7 +537,7 @@
             var guize=$('#form-field-2').val()
             //获取回复内容
             var content=$('#form-field-3').val()
-            $.post("<?php echo URL?>/web/rule/addall",{id:id,name:name,guize:guize,content:content},function(data){
+            $.post("<?php echo	URL?>/web/rule/addall",{id:id,name:name,guize:guize,content:content},function(data){
                 alert(data)
             })
         })
