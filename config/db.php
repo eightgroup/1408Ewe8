@@ -1,8 +1,1 @@
-<?php 
-return ['class' => 
-	'yii\db\Connection',
-	'dsn' => 'mysql:host=127.0.0.1;dbname=pxj',
-	'username' => 'root',
-	'password' => 'root',
-	'charset' => 'utf8',
-];
+<?php return ['class' => 'yii\db\Connection','dsn' => 'mysql:host=127.0.0.1;dbname=pt','username' => 'root','password' => 'root','charset' => 'utf8',];
