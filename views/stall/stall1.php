@@ -172,6 +172,20 @@
 				</tr>
 				<tr class="success">
 					<td>/</td>
+					<td>db文件可写</td>
+					<td><span class="glyphicon glyphicon-ok text-success">
+					<?php 
+						if($db==1){
+							echo "ok";
+						}else{
+							echo 'no';
+						}
+					?>
+					</span></td>
+					<td></td>
+				</tr>
+				<tr class="success">
+					<td>/</td>
 					<td>config目录可写</td>
 					<td><span class="glyphicon glyphicon-ok text-success">
 					<?php 

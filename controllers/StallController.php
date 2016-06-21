@@ -13,7 +13,12 @@ class StallController extends \yii\web\Controller{
         $config=$this->actionDir_writeable('../config');
         $vendor=$this->actionDir_writeable('../vendor');
         //echo $config;die;
-        return $this->renderPartial('stall1',array('config'=>$config,'vendor'=>$vendor));
+        if (is_writable('../config/db.php')) {
+             $db=1;
+            } else {
+              $db=0;
+            }
+        return $this->renderPartial('stall1',array('config'=>$config,'vendor'=>$vendor,'db'=>$db));
     }
     public function actionInstall2(){
         
