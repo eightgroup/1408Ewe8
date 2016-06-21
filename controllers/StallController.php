@@ -10,7 +10,15 @@ class StallController extends \yii\web\Controller{
         return $this->renderPartial('stall');
     }
     public function actionInstall1(){
-        return $this->renderPartial('stall1');
+    	 $config=$this->actionDir_writeable('../config');
+        $vendor=$this->actionDir_writeable('../vendor');
+        //echo $config;die;
+        if (is_writable('../config/db.php')) {
+             $db=1;
+            } else {
+              $db=0;
+            }
+        return $this->renderPartial('stall1',array('config'=>$config,'vendor'=>$vendor,'db'=>$db));
     }
     public function actionInstall2(){
         return $this->renderPartial('stall2');
@@ -18,7 +26,21 @@ class StallController extends \yii\web\Controller{
     public function actionInstall3(){
         return $this->renderPartial('stall3');
     }
-
+    public function actionDir_writeable($dir) {
+        if(!is_dir($dir)) {
+            @mkdir($dir, 0777);
+        }
+        if(is_dir($dir)) {
+            if($fp = @fopen("$dir/test.txt", 'w')) {
+                @fclose($fp);
+                @unlink("$dir/test.txt");
+                $writeable = 1;
+            } else {
+                $writeable = 0;
+            }
+        }
+        return $writeable;
+      }
     function actionTests(){
         $server=$_POST['server'];
         $username=$_POST['username'];

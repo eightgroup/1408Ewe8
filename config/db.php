@@ -1,1 +1,1 @@
-<?php return ['class' => 'yii\db\Connection','dsn' => 'mysql:host=127.0.0.1;dbname=memeda','username' => 'root','password' => 'root','charset' => 'utf8',];
+<?php return ['class' => 'yii\db\Connection','dsn' => 'mysql:host=127.0.0.1;dbname=doubi','username' => 'root','password' => 'root','charset' => 'utf8',];
