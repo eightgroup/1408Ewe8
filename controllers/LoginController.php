@@ -37,9 +37,13 @@ class LoginController extends \yii\web\Controller
         }else{
             //视图
 			$arr=Yii::$app->db->createCommand('select * from we_public where p_state=1');
-			$arr=$arr->queryAll();
+			$arr=$arr->queryOne();
 			//var_dump($arr);die;
-            return $this->renderPartial('index');
+			if($arr){
+				return $this->renderPartial('index',['arr'=>$arr]);
+			}else{
+				return $this->renderPartial('indexkong');
+			}
         }
     }
     public function actionForget(){

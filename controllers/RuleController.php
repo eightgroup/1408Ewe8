@@ -40,23 +40,28 @@ class RuleController extends CoController
     public function actionList(){
 		$arr=Yii::$app->db->createCommand("select p_id,p_name from we_public where p_state=1");
 		$arr=$arr->queryAll();
-		$p_id=$arr[0]['p_id'];
-        $query = WeRule::find();
+		if($arr){
+			$p_id=$arr[0]['p_id'];
+			$query = WeRule::find();
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 3,
-            'totalCount' => $query->where("p_id=$p_id")->count(),
-        ]);
+			$pagination = new Pagination([
+				'defaultPageSize' => 3,
+				'totalCount' => $query->where("p_id=$p_id")->count(),
+			]);
 
-        $countries = $query->where("p_id=$p_id")
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+			$countries = $query->where("p_id=$p_id")
+				->offset($pagination->offset)
+				->limit($pagination->limit)
+				->all();
 
-        return $this->renderPartial('list', [
-            'countries' => $countries,
-            'pagination' => $pagination,
-        ]);
+			return $this->renderPartial('list', [
+				'countries' => $countries,
+				'pagination' => $pagination,
+			]);
+		}else{
+			return $this->renderPartial('listkong');
+		}
+		
     }
 
 }

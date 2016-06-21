@@ -1,7 +1,3 @@
-<?php
-use yii\helpers\Html;
-use yii\widgets\LinkPager;
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -123,9 +119,9 @@ use yii\widgets\LinkPager;
 											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 												<thead>
 													<tr>
-														<th>规则名</th>
-														<th>回复类型</th>
-														<th class="hidden-480">关键字</th>
+														<th>消息名</th>
+														<th>关键字</th>
+														<th class="hidden-480">类型</th>
 
 														<th>
 															<i class="icon-time bigger-110 hidden-480"></i>
@@ -134,43 +130,36 @@ use yii\widgets\LinkPager;
 														<th></th>
 													</tr>
 												</thead>
-                                                <?php foreach ($countries as $v): ?>
 												<tbody>
 													<tr>
 														<td>
-															<a href="#"><?php echo $v['r_name']?></a>
+															<a href="#"></a>
 														</td>
-														<td><?php if($v['r_type']==1){
-                                                                echo "关键字回复";
-                                                            }else{
-                                                                echo "全文回复";
-                                                            }?></td>
-														<td class="hidden-480"><?php echo $v['r_keyword']?></td>
-														<td><?php echo $v['p_content']?></td>
+														<td></td>
+														<td class="hidden-480"></td>
+														<td></td>
 														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+															<!-- <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 																<button class="btn btn-xs btn-success">
 																	<i class="icon-ok bigger-120"></i>
 																</button>
-
+															
 																<button class="btn btn-xs btn-info">
 																	<i class="icon-edit bigger-120"></i>
 																</button>
-
+															
 																<button class="btn btn-xs btn-danger">
 																	<i class="icon-trash bigger-120"></i>
 																</button>
-
+															
 																<button class="btn btn-xs btn-warning">
 																	<i class="icon-flag bigger-120"></i>
 																</button>
-															</div>
+															</div> -->
 														</td>
 													</tr>
 												</tbody>
-                                                <?php endforeach; ?>
 											</table>
-                                            <?= LinkPager::widget(['pagination' => $pagination]) ?>
 										</div><!-- /.table-responsive -->
 									</div><!-- /span -->
 								</div><!-- /row -->

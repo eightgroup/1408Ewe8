@@ -17,7 +17,7 @@
             <ul class="nav ace-nav">
 
 
-    <!--             <li class="light-blue">
+             <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                       
 								<span class="user-info" id="mypublic">
@@ -33,7 +33,6 @@
                     </ul>
 
                 </li>
- -->
 
 
                 <li class="light-blue">

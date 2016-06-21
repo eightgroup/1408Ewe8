@@ -16,23 +16,22 @@
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
              
-        <!--         <li class="light-blue">
+				<li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                        
-								<span class="user-info" id="mypublic">
-									<small>您当前操作的是,</small>
-									
-								</span>
-
+        								<span class="user-info" id="mypublic">
+        									<small>您当前操作的是,</small>
+        									
+        								</span>
+        
                         <i class="icon-caret-down"></i>
                     </a>
-
+        
                     <ul id="hehe" class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
+        
                     </ul>
-
+        
                 </li>
- -->
 
 
 

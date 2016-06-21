@@ -15,8 +15,7 @@
 
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-         
-<!-- 
+
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         
@@ -33,7 +32,6 @@
                     </ul>
 
                 </li>
- -->
 
 
                 <li class="light-blue">
