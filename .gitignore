@@ -1,2 +1,2 @@
-#pass config/db.php;
+#pass vendor/install.php
 vendor/install.php

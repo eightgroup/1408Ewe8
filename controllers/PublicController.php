@@ -59,12 +59,13 @@ class PublicController extends CoController
     }
     //生成随机tokey
     protected function actionTokey($pw_length=8){
-        $randpwd = '';
-        for ($i = 0; $i < $pw_length; $i++)
-        {
-            $randpwd .= chr(mt_rand(33, 126));
+        $str = null;
+        $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+        $max = strlen($strPol)-1;
+        for($i=0;$i<$length;$i++){
+            $str.=$strPol[rand(0,$max)];//rand($min,$max)生成介于min和max两个数之间的一个随机整数
         }
-        return $randpwd;
+        return $str;
     }
     //公众号列表
     public function actionList(){
