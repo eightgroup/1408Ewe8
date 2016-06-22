@@ -4,26 +4,26 @@
   */
 
 //define your token
-
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
 define("TOKEN", $p_token);
 $wechatObj = new wechatCallbackapiTest();
-$wechatObj->valid();
+$wechatObj->valid($arr);
 
 class wechatCallbackapiTest
 {
-	public function valid()
+	public function valid($arr)
     {
         $echoStr = $_GET["echostr"];
 
         //valid signature , option
         if($this->checkSignature()){
         	echo $echoStr;
-            $this->responseMsg();
+            $this->responseMsg($arr);
         	exit;
         }
     }
 
-    public function responseMsg()
+    public function responseMsg($arr)
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
@@ -49,22 +49,29 @@ class wechatCallbackapiTest
 				if(!empty( $keyword ))
                 {
               		$msgType = "text";
-                    if($arr){
+                    if(is_array($arr)){
                            foreach($arr as $key=>$val){
                                if($val['r_keyword']==$keyword){
                                    $contentStr = $val['p_content'];
                                }
                            }
+                    }else{
+                    	$contentStr = '规则不存在';
                     }
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }else{
-                	echo "Input something...";
+                	$msgType = "text";
+                	$contentStr = $arr;
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                	echo $resultStr;
                 }
 
         }else {
-        	echo "";
-        	exit;
+        	$msgType = "text";
+                	$contentStr = '欢迎关注哦';
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                	echo $resultStr;
         }
     }
 
