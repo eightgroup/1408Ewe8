@@ -36,7 +36,7 @@ class PublicController extends CoController
             return $this->redirect(['public/add']);
         }
         //生成tokey
-        $tokey=$this->actionTokey();
+        $tokey=md5($this->actionTokey());
         //生成url参数值
         $urlget=$this->actionUget();//生成st
         //生成微信通信页面

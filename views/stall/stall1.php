@@ -178,7 +178,7 @@
 						if($db==1){
 							echo "ok";
 						}else{
-							echo 'no';
+							echo '<font color="red">no！！</font>';
 						}
 					?>
 					</span></td>
@@ -192,7 +192,7 @@
 						if($config==1){
 							echo "ok";
 						}else{
-							echo 'no';
+							echo '<font color="red">no！！</font>';
 						}
 					?>
 					</span></td>
@@ -201,12 +201,12 @@
 				<tr class="success">
 					<td>/</td>
 					<td>vendor目录可写</td>
-					<td><span class="glyphicon glyphicon-ok text-success">
+					<td><span  class="glyphicon glyphicon-ok text-success">
 						<?php 
 						if($vendor==1){
 							echo "ok";
 						}else{
-							echo 'no';
+							echo '<font color="red">no！！</font>';
 						}
 					?>
 					</span></td>
@@ -218,7 +218,13 @@
 			<input name="do" id="do" type="hidden">
 			<ul class="pager">
 				<li class="previous"><a href="javascript:;" onclick="$('#do').val('back');$('form')[0].submit();"><span class="glyphicon glyphicon-chevron-left"></span> 返回</a></li>
-				<li class="previous"><a href="javascript:;" onclick="location.href='<?php echo URL.'/web/stall/install2'?>'">继续 <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+				<?php
+					if($state){
+				?>
+					<li class="previous"><a href="javascript:;" onclick="location.href='<?php echo URL.'/web/stall/install2'?>'">继续 <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+				<?php			
+					}
+				?>
 			</ul>
 		</form>
 				</div>
