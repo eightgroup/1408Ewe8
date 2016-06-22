@@ -56,22 +56,20 @@ class wechatCallbackapiTest
                                }
                            }
                     }else{
-                    	$contentStr = '规则不存在';
+                    	$contentStr = '你长了一副“请你来骂我”的嘴脸。';
+                    }
+                    if($contentStr==''){
+                        $contentStr = '你长了一副“请你来骂我”的嘴脸。';
                     }
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }else{
                 	$msgType = "text";
-                	$contentStr = $arr;
+                	$contentStr = '欢迎您首次关注';
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }
 
-        }else {
-        	$msgType = "text";
-                	$contentStr = '欢迎关注哦';
-                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                	echo $resultStr;
         }
     }
 

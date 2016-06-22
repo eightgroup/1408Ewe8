@@ -11,9 +11,6 @@ class WeiController extends \yii\web\Controller{
         $p_id=$post['p_id'];
         $command = $connection->createCommand("select * from we_rule where p_id=$p_id");
         $arr=$command->queryAll();
-        if(!$arr){
-            $arr='欢迎您首次关注';
-        }
         include_once('weixin.php');
     }
 }
