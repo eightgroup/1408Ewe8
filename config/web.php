@@ -7,7 +7,16 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
-
+		 'cache' => [
+        'class' => 'yii\caching\MemCache',
+        'servers' => [
+            [
+                'host' => 'server1',
+                'port' => 11211,
+                'weight' => 7000,
+            ]
+        ],
+    ],  	
     	 'urlManager' => [
              'enablePrettyUrl' => true,
              'showScriptName' => false,//隐藏index.php

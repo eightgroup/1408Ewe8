@@ -65,7 +65,12 @@ class wechatCallbackapiTest
                 	echo $resultStr;
                 }else{
                 	$msgType = "text";
-                	$contentStr = '欢迎您首次关注';
+					$key = $postObj->EventKey;
+					if($key==''){
+						$contentStr = '欢迎您首次关注';
+					}else{
+						$contentStr=urldecode($key);
+					}       
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }
