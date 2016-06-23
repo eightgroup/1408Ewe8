@@ -12,6 +12,190 @@
     </script>
     <script src="<?php echo URL?>/web/js/jq.js"></script>
     <script src="<?php echo URL?>/web/js/user.js"></script>
+    <!-- 菜单添加js引入  -->
+    <script type="text/javascript" src="<?php echo URL?>/views/assets/js/jquery-ui-1.10.3.min.js"></script>
+    <script type="text/javascript">
+        var pIndex = 1;
+        var currentEntity = null;
+        $(function(){
+            $('tbody.mlist').sortable({handle: '.icon-move'});
+            $('.smlist').sortable({handle: '.icon-move'});
+            $('.mlist .hover').each(function(){
+                $(this).data('do', $(this).attr('data-do'));
+                $(this).data('url', $(this).attr('data-url'));
+                $(this).data('forward', $(this).attr('data-forward'));
+            });
+            $('.mlist .hover .smlist div').each(function(){
+                $(this).data('do', $(this).attr('data-do'));
+                $(this).data('url', $(this).attr('data-url'));
+                $(this).data('forward', $(this).attr('data-forward'));
+            });
+            $(':radio[name="ipt"]').click(function(){
+                if(this.checked) {
+                    if($(this).val() == 'url') {
+                        $('#url-container').show();
+                        $('#forward-container').hide();
+                    } else {
+                        $('#url-container').hide();
+                        $('#forward-container').show();
+                    }
+                }
+            });
+            $('#dialog').modal({keyboard: false, show: false});
+            $('#dialog').on('hide', saveMenuAction);
+        });
+        function addMenu() {
+            if($('.mlist .hover').length >= 3) {
+                return;
+            }
+            var html = '<tr class="hover">'+
+                '<td>'+
+                '<div>'+
+                '<input type="text" class="span4" value=""> &nbsp; &nbsp; '+
+                '<a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp; '+
+                '<a href="javascript:;" onclick="setMenuAction($(this).parent().parent().parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp; '+
+                '<a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a> &nbsp; '+
+                '<a href="javascript:;" onclick="addSubMenu($(this).parent().next());" title="添加子菜单" class="icon-plus-sign" title="添加菜单"></a> '+
+                '</div>'+
+                '<div class="smlist"></div>'+
+                '</td>'+
+                '</tr>';
+            $('tbody.mlist').append(html);
+        }
+        function addSubMenu(o) {
+            if(o.find('div').length >= 5) {
+                return;
+            }
+            var html = '' +
+                '<div style="margin-top:20px;padding-left:80px;background:url(\'./resource/image/bg_repno.gif\') no-repeat -245px -545px;">'+
+                '<input type="text" class="span3" value=""> &nbsp; &nbsp; '+
+                '<a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp; '+
+                '<a href="javascript:;" onclick="setMenuAction($(this).parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp; '+
+                '<a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a> '+
+                '</div>';
+            o.append(html);
+        }
+        function deleteMenu(o) {
+            if($(o).parent().parent().hasClass('smlist')) {
+                $(o).parent().remove();
+            } else {
+                $(o).parent().parent().parent().remove();
+            }
+        }
+        function setMenuAction(o) {
+            if(o == null) return;
+            if(o.find('.smlist div').length > 0) {
+                return;
+            }
+            currentEntity = o;
+            $('#ipt-url').val($(o).data('url'));
+            $('#ipt-forward').val($(o).data('forward'));
+            if($(o).data('do') != 'forward') {
+                $(':radio').eq(0).attr('checked', 'checked');
+            } else {
+                $(':radio').eq(1).attr('checked', 'checked');
+            }
+            $(':radio:checked').trigger('click');
+            $('#dialog').modal('show');
+        }
+        function saveMenuAction(e) {
+            var o = currentEntity;
+            var t = $(':radio:checked').val();
+            t = t == 'url' ? 'url' : 'forward';
+            if(o == null) return;
+            $(o).data('do', t);
+            $(o).data('url', $('#ipt-url').val());
+            $(o).data('forward', $('#ipt-forward').val());
+        }
+        function saveMenu() {
+            if($('.span4:text').length > 3) {
+                message('不能输入超过 3 个主菜单才能保存.', '', 'error');
+                return;
+            }
+            if($('.span4:text,.span3:text').filter(function(){ return $.trim($(this).val()) == '';}).length > 0) {
+                message('存在未输入名称的菜单.', '', 'error');
+                return;
+            }
+            if($('.span4:text').filter(function(){ return $.trim($(this).val()).length > 5;}).length > 0) {
+                message('主菜单的名称长度不能超过5个字.', '', 'error');
+                return;
+            }
+            if($('.span3:text').filter(function(){ return $.trim($(this).val()).length > 8;}).length > 0) {
+                message('子菜单的名称长度不能超过8个字.', '', 'error');
+                return;
+            }
+            var dat = '[';
+            var error = false;
+            $('.mlist .hover').each(function(){
+                var name = $.trim($(this).find('.span4:text').val()).replace(/"/g, '\"');
+                var type = $(this).data('do') != 'forward' ? 'view' : 'click';
+                var url = $(this).data('url');
+                if(!url) {
+                    url = '';
+                }
+                var forward = $.trim($(this).data('forward'));
+                if(!forward) {
+                    forward = '';
+                }
+                dat += '{"name": "' + name + '"';
+                if($(this).find('.smlist div').length > 0) {
+                    dat += ',"sub_button": [';
+                    $(this).find('.smlist div').each(function(){
+                        var sName = $.trim($(this).find('.span3:text').val()).replace(/"/g, '\"');
+                        var sType = $(this).data('do') != 'forward' ? 'view' : 'click';
+                        var sUrl = $(this).data('url');
+                        if(!sUrl) {
+                            sUrl = '';
+                        }
+                        var sForward = $.trim($(this).data('forward'));
+                        if(!sForward) {
+                            sForward = '';
+                        }
+                        dat += '{"name": "' + sName + '"';
+                        if((sType == 'click' && sForward == '') || (sType == 'view' && !sUrl)) {
+                            message('子菜单项 “' + sName + '”未设置对应规则.', '', 'error');
+                            error = true;
+                            return false;
+                        }
+                        if(sType == 'click') {
+                            dat += ',"type": "click","key": "' + encodeURIComponent(sForward) + '"';
+                        }
+                        if(sType == 'view') {
+                            dat += ',"type": "view","url": "' + sUrl + '"';
+                        }
+                        dat += '},';
+                    });
+                    if(error) {
+                        return false;
+                    }
+                    dat = dat.slice(0,-1);
+                    dat += ']';
+                } else {
+                    if((type == 'click' && forward == '') || (type == 'view' && !url)) {
+                        message('菜单 “' + name + '”不存在子菜单项, 且未设置对应规则.', '', 'error');
+                        error = true;
+                        return false;
+                    }
+                    if(type == 'click') {
+                        dat += ',"type": "click","key": "' + encodeURIComponent(forward) + '"';
+                    }
+                    if(type == 'view') {
+                        dat += ',"type": "view","url": "' + url + '"';
+                    }
+                }
+                dat += '},';
+            });
+            if(error) {
+                return;
+            }
+            dat = dat.slice(0,-1);
+            dat += ']';
+            alert('{"button":'+dat+"}")
+            return false;
+            $('#do').val(dat);
+            $('#form')[0].submit();
+        }
+    </script>
     <!-- basic styles -->
 
     <link href="<?php echo URL?>/views/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -57,6 +241,12 @@
     <script src="<?php echo URL?>/views/assets/js/html5shiv.js"></script>
     <script src="<?php echo URL?>/views/assets/js/respond.min.js"></script>
     <![endif]-->
+	<style type="text/css">
+	.table-striped td{padding-top: 10px;padding-bottom: 10px}
+	a{font-size:14px;}
+	a:hover, a:active{text-decoration:none; color:red;}
+	.hover td{padding-left:10px;}
+</style>
 </head>
 
 <body>
@@ -116,218 +306,87 @@
 								</small>
 							</h1>
 						</div>
-				
-						<!--<div class="row">
-							<div class="col-xs-12">
-								PAGE CONTENT BEGINS
-				
-								<form class="form-horizontal" role="form">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
-				
-										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5" />
-										</div>
-									</div>
-				
-									<div class="space-4"></div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Password Field </label>
-				
-										<div class="col-sm-9">
-											<input type="password" id="form-field-2" placeholder="Password" class="col-xs-10 col-sm-5" />
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">Inline help text</span>
-											</span>
-										</div>
-									</div>
-				
-									<div class="space-4"></div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Readonly field </label>
-				
-										<div class="col-sm-9">
-											<input readonly="" type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" value="This text field is readonly!" />
-											<span class="help-inline col-xs-12 col-sm-7">
-												<label class="middle">
-													<input class="ace" type="checkbox" id="id-disable-check" />
-													<span class="lbl"> Disable it!</span>
-												</label>
-											</span>
-										</div>
-									</div>
-				
-									<div class="space-4"></div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-4">Relative Sizing</label>
-				
-										<div class="col-sm-9">
-											<input class="input-sm" type="text" id="form-field-4" placeholder=".input-sm" />
-											<div class="space-2"></div>
-				
-											<div class="help-block" id="input-size-slider"></div>
-										</div>
-									</div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-5">Grid Sizing</label>
-				
-										<div class="col-sm-9">
-											<div class="clearfix">
-												<input class="col-xs-1" type="text" id="form-field-5" placeholder=".col-xs-1" />
-											</div>
-				
-											<div class="space-2"></div>
-				
-											<div class="help-block" id="input-span-slider"></div>
-										</div>
-									</div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right">Input with Icon</label>
-				
-										<div class="col-sm-9">
-											<span class="input-icon">
-												<input type="text" id="form-field-icon-1" />
-												<i class="icon-leaf blue"></i>
-											</span>
-				
-											<span class="input-icon input-icon-right">
-												<input type="text" id="form-field-icon-2" />
-												<i class="icon-leaf green"></i>
-											</span>
-										</div>
-									</div>
-				
-									<div class="space-4"></div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-6">Tooltip and help button</label>
-				
-										<div class="col-sm-9">
-											<input data-rel="tooltip" type="text" id="form-field-6" placeholder="Tooltip on hover" title="Hello Tooltip!" data-placement="bottom" />
-											<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="left" data-content="More details." title="Popover on hover">?</span>
-										</div>
-									</div>
-				
-									<div class="space-4"></div>
-				
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Tag input</label>
-				
-										<div class="col-sm-9">
-											<input type="text" name="tags" id="form-field-tags" value="Tag Input Control" placeholder="Enter tags ..." />
-										</div>
-									</div>
-				
-									<div class="clearfix form-actions">
-										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="button">
-												<i class="icon-ok bigger-110"></i>
-												Submit
-											</button>
-				
-											&nbsp; &nbsp; &nbsp;
-											<button class="btn" type="reset">
-												<i class="icon-undo bigger-110"></i>
-												Reset
-											</button>
-										</div>
-									</div>
-									
-									<div class="space-24"></div>
-									
-								</form>
-							</div>/.col
-						</div>/.row
-					</div>/.page-content
-				</div> -->
-				
-				<center>
-							<h3>菜单添加</h3>
-								<form action="index.php?r=menu/add" method='post'>
-									<table style="margin-top:50px;">
-										<tr>
-											<td>顶级标签:</td>
-											<td>
-												<select name="bf_id">
-													<option value="0" selected>主菜单....
-												</select>
-											</td>
-										</tr>
-										<tr style="height:20px;">
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>菜单名称:</td>
-											<td><input type="text" name='b_name' /></td>
-										</tr>
-										<tr style="height:20px;">
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td><button class="btn btn-info" type="submit">
-												<i class="icon-ok bigger-110"></i>
-												添加此菜单
-											</button></td>
-										</tr>
-									</table>
-								</form>
-							</center><!-- /.main-content -->
 
-				<!-- <div class="ace-settings-container" id="ace-settings-container">
-					<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-						<i class="icon-cog bigger-150"></i>
-					</div>
-				
-					<div class="ace-settings-box" id="ace-settings-box">
-						<div>
-							<div class="pull-left">
-								<select id="skin-colorpicker" class="hide">
-									<option data-skin="default" value="#438EB9">#438EB9</option>
-									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-								</select>
-							</div>
-							<span>&nbsp; Choose Skin</span>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
-							<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
-							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
-							<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
-							<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-						</div>
-				
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
-							<label class="lbl" for="ace-settings-add-container">
-								Inside
-								<b>.container</b>
-							</label>
-						</div>
-					</div>
-				</div> --><!-- /#ace-settings-container -->
+                        <div class="main">
+                            <div class="form form-horizontal">
+                                <h4>菜单设计器 <small>编辑和设置微信公众号码, 必须是服务号才能编辑自定义菜单。</small></h4>
+                                <table class="tb table-striped">
+                                    <tbody class="mlist ui-sortable">
+                                    <tr class="hover" data-do="forward" data-url="" data-forward="V1001_TODAY_MUSIC">
+                                        <td>
+                                            <div>
+                                                <input type="text" class="span4" value="推荐歌曲"> &nbsp; &nbsp;
+                                                <a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp;
+                                                <a href="javascript:;" onclick="setMenuAction($(this).parent().parent().parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp;
+                                                <a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a> &nbsp;
+                                                <a href="javascript:;" onclick="addSubMenu($(this).parent().next());" title="添加子菜单" class="icon-plus-sign"></a>
+                                            </div>
+                                            <div class="smlist ui-sortable">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover" data-do="view" data-url="" data-forward="">
+                                        <td>
+                                            <div>
+                                                <input type="text" class="span4" value="菜单"> &nbsp; &nbsp;
+                                                <a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp;
+                                                <a href="javascript:;" onclick="setMenuAction($(this).parent().parent().parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp;
+                                                <a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a> &nbsp;
+                                                <a href="javascript:;" onclick="addSubMenu($(this).parent().next());" title="添加子菜单" class="icon-plus-sign"></a>
+                                            </div>
+                                            <div class="smlist ui-sortable">
+                                                <div style="margin-top:20px;padding-left:80px;background:url(&#39;./resource/image/bg_repno.gif&#39;) no-repeat -245px -545px;" data-do="view" data-url="https://www.baidu.com/" data-forward="">
+                                                    <input type="text" class="span3" value="搜索"> &nbsp; &nbsp;
+                                                    <a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp;
+                                                    <a href="javascript:;" onclick="setMenuAction($(this).parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp;
+                                                    <a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a>
+                                                </div>
+                                                <div style="margin-top:20px;padding-left:80px;background:url(&#39;./resource/image/bg_repno.gif&#39;) no-repeat -245px -545px;" data-do="view" data-url="http://v.qq.com/" data-forward="">
+                                                    <input type="text" class="span3" value="视频"> &nbsp; &nbsp;
+                                                    <a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp;
+                                                    <a href="javascript:;" onclick="setMenuAction($(this).parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp;
+                                                    <a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a>
+                                                </div>
+                                                <div style="margin-top:20px;padding-left:80px;background:url(&#39;./resource/image/bg_repno.gif&#39;) no-repeat -245px -545px;" data-do="forward" data-url="" data-forward="V1001_GOOD">
+                                                    <input type="text" class="span3" value="赞一下我们"> &nbsp; &nbsp;
+                                                    <a href="javascript:;" class="icon-move" title="拖动调整此菜单位置"></a> &nbsp;
+                                                    <a href="javascript:;" onclick="setMenuAction($(this).parent());" class="icon-edit" title="设置此菜单动作"></a> &nbsp;
+                                                    <a href="javascript:;" onclick="deleteMenu(this)" class="icon-remove-sign" title="删除此菜单"></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="well well-small" style="margin-top:20px;">
+                                    <a href="javascript:;" onclick="addMenu();">添加菜单 <i class="icon-plus-sign" title="添加菜单"></i></a> &nbsp; &nbsp; &nbsp;  <span class="help-inline">可以使用 <i class="icon-move"></i> 进行拖动排序</span>
+                                </div>
+
+                                <h4>操作 <small>设计好菜单后再进行保存操作</small></h4>
+                                <table class="tb">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="button" value="保存菜单结构" class="btn btn-primary span3" onclick="saveMenu()">
+                                            <span class="help-block">保存当前菜单结构至公众平台, 由于缓存可能需要在24小时内生效</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="button" value="删除" class="btn btn-primary span3" onclick="$(&#39;#do&#39;).val(&#39;remove&#39;);$(&#39;#form&#39;)[0].submit();">
+                                            <div class="help-block">清除自定义菜单</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="button" value="刷新" class="btn btn-primary span3" onclick="$(&#39;#do&#39;).val(&#39;refresh&#39;);$(&#39;#form&#39;)[0].submit();">
+                                            <div class="help-block">重新从公众平台获取菜单信息</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- /.main-content -->
 			</div><!-- /.main-container-inner -->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -335,37 +394,11 @@
 			</a>
 		</div><!-- /.main-container -->
 
-<!-- basic scripts -->
-
-<!--[if !IE]> -->
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-<!--[if !IE]> -->
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='<?php echo URL?>/views/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-
 <script type="text/javascript">
     if("ontouchend" in document) document.write("<script src='<?php echo URL?>/views/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 <script src="<?php echo URL?>/views/assets/js/bootstrap.min.js"></script>
 <script src="<?php echo URL?>/views/assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<!--[if lte IE 8]>
-<script src="<?php echo URL?>/views/assets/js/excanvas.min.js"></script>
-<![endif]-->
 
 <script src="<?php echo URL?>/views/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script src="<?php echo URL?>/views/assets/js/jquery.ui.touch-punch.min.js"></script>
@@ -670,3 +703,11 @@
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>
+<script>
+    function hehe(){
+        $('.span4').each(function(i){
+            alert($(this).val())
+        });
+    }
+
+</script>
