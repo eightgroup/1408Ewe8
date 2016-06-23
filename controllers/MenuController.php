@@ -52,7 +52,7 @@ class MenuController extends CoController
 				echo 2;
 				exit;
 			}
-				$memcache->set($pid,$arr);
+				$memcache->set($pid,$arr,3600);
 				$access_token=$memcache->get($pid);
 		}
 		//这个url是设置菜单的微信url
